@@ -1,4 +1,4 @@
-export default function LogInForm() {
+export default function SignUpForm() {
   return (
     <div class="container">
       <div class="col-xs-1 col-md-3 col-lg"></div>
@@ -16,8 +16,13 @@ export default function LogInForm() {
               <input type="password" id="password" />
             </label>
           </div>
-          <div class="form-group"></div>
-          <button type="submit">Log In</button>
+          <div class="form-group">
+            <label>
+              Verify Password
+              <input type="password" id="passwordVerify" />
+            </label>
+          </div>
+          <button type="submit">Sign Up</button>
         </form>
       </div>
     </div>
