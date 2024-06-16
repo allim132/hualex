@@ -1,14 +1,26 @@
 import './App.css'
 import LogInForm from './components/LogInForm'
 import SignUpForm from './components/SignUpForm'
+import { useState } from 'react'
 
 function App() {
+  const [showLogInForm, setShowLogInForm] = useState(false)
+
+  const handleShowLogIn = () => {
+    setShowLogInForm(true)
+  }
+
+  const handleShowSignUp = () => {
+    setShowLogInForm(false)
+  }
+
   return (
-    <div>
-      <h1>Hello World</h1>
-      <SignUpForm />
-      <h2>Seperator</h2>
-      <LogInForm />
+    <div className="App">
+      {showLogInForm ? (
+        <LogInForm onShowSignUp={handleShowSignUp} />
+      ) : (
+        <SignUpForm onShowLogIn={handleShowLogIn} />
+      )}
     </div>
   )
 }
