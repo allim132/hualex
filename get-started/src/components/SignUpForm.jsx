@@ -1,3 +1,5 @@
+import './Form.css'
+
 export default function SignUpForm({ onShowLogIn }) {
   const handleShowLogIn = () => {
     onShowLogIn()
@@ -28,9 +30,9 @@ export default function SignUpForm({ onShowLogIn }) {
             </label>
           </div>
           <button type="submit">Sign Up</button>
-          <button type="login" onClick={handleShowLogIn}>
-            Log In
-          </button>
+          <div class="toggle-button" type="login" onClick={handleShowLogIn}>
+            <u>Log In</u>
+          </div>
         </form>
       </div>
     </div>
