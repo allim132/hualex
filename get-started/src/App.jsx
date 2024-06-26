@@ -15,7 +15,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div>
       {showLogInForm ? (
         <LogInForm onShowSignUp={handleShowSignUp} />
       ) : (
