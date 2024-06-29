@@ -1,14 +1,20 @@
-import './Form.css'
-import { useState } from 'react'
+import '../Form.css'
+import React, { useState } from 'react'
+// import { useAuth } from '../../../contexts/authContext'
+// import { Navigate, Link, useNavigate } from 'react-router-dom'
+import { doCreateUserWithEmailAndPassword } from '../../../firebase/auth'
 
 export default function SignUpForm({ onShowLogIn }) {
+  // const { userLoggedIn } = useAuth()
+  // const navigate = useNavigate()
+
   // States for registration
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordVerify, setPasswordVerify] = useState('')
 
   // States for checking errors
-  const [submitted, setSubmitted] = useState(false)
+  const [errorEmailUsed, setErrorEmailUsed] = useState(false)
   const [errorInvalidEmail, setErrorInvalidEmail] = useState(false)
   const [errorPasswordsDoNotMatch, setErrorPasswordsDoNotMatch] =
     useState(false)
@@ -17,7 +23,7 @@ export default function SignUpForm({ onShowLogIn }) {
   const handleEmailChange = (e) => {
     setEmail(e.target.value)
 
-    setSubmitted(false)
+    setErrorEmailUsed(false)
     setErrorInvalidEmail(false)
     setErrorEmptyFields(false)
   }
@@ -25,7 +31,7 @@ export default function SignUpForm({ onShowLogIn }) {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value)
 
-    setSubmitted(false)
+    setErrorEmailUsed(false)
     setErrorPasswordsDoNotMatch(false)
     setErrorEmptyFields(false)
   }
@@ -33,7 +39,7 @@ export default function SignUpForm({ onShowLogIn }) {
   const handlePasswordVerifyChange = (e) => {
     setPasswordVerify(e.target.value)
 
-    setSubmitted(false)
+    setErrorEmailUsed(false)
     setErrorPasswordsDoNotMatch(false)
     setErrorEmptyFields(false)
   }
@@ -41,7 +47,8 @@ export default function SignUpForm({ onShowLogIn }) {
   const isValidEmail = (email) => {
     return /\S+@\S+\.\S+/.test(email)
   }
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     // Check if fields are empty
@@ -72,10 +79,16 @@ export default function SignUpForm({ onShowLogIn }) {
     }
 
     // Successful registration
-    setSubmitted(true)
+
     setErrorEmptyFields(false)
     setErrorInvalidEmail(false)
     setErrorPasswordsDoNotMatch(false)
+
+    try {
+      await doCreateUserWithEmailAndPassword(email, password)
+    } catch (error) {
+      setErrorEmailUsed(true)
+    }
   }
 
   const handleShowLogIn = () => {
@@ -92,6 +105,10 @@ export default function SignUpForm({ onShowLogIn }) {
 
   const passwordsDoNotMatchErrorMessage = () => {
     return <p class="error">Passwords do not match</p>
+  }
+
+  const emailUsedErrorMessage = () => {
+    return <p class="error">Email already in use</p>
   }
 
   return (
@@ -129,6 +146,7 @@ export default function SignUpForm({ onShowLogIn }) {
           <button type="submit" onClick={handleSubmit}>
             Sign Up
           </button>
+          {errorEmailUsed && emailUsedErrorMessage()}
           {errorEmptyFields && emptyFieldsErrorMessage()}
           {errorInvalidEmail && invalidEmailErrorMessage()}
           {errorPasswordsDoNotMatch && passwordsDoNotMatchErrorMessage()}

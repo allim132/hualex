@@ -1,6 +1,6 @@
 import './App.css'
-import LogInForm from './components/LogInForm'
-import SignUpForm from './components/SignUpForm'
+import LogInForm from './components/authentication/login/LogInForm'
+import SignUpForm from './components/authentication/signup/SignUpForm'
 import { useState } from 'react'
 
 function App() {
@@ -14,15 +14,17 @@ function App() {
     setShowLogInForm(false)
   }
 
-  return (
-    <div>
+  return <SignUpForm onShowLogIn={handleShowLogIn} />
+}
+
+export default App
+
+/*
+<div>
       {showLogInForm ? (
         <LogInForm onShowSignUp={handleShowSignUp} />
       ) : (
         <SignUpForm onShowLogIn={handleShowLogIn} />
       )}
     </div>
-  )
-}
-
-export default App
+*/

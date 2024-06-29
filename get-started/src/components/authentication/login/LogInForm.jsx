@@ -1,4 +1,4 @@
-import './Form.css'
+import '../Form.css'
 
 export default function LogInForm({ onShowSignUp }) {
   const handleShowSignUp = () => {
