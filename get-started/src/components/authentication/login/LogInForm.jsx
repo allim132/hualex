@@ -1,31 +1,35 @@
 import '../Form.css'
 
-export default function LogInForm({ onShowSignUp }) {
-  const handleShowSignUp = () => {
-    onShowSignUp()
-  }
+const handleShowSignUp = () => {
+  console.log('Sign up clicked')
+}
 
+export default function LogInForm() {
   return (
-    <div class="container">
-      <div class="col-xs-1 col-md-3 col-lg"></div>
-      <div class="col-xs-10 col-md-6 col-lg center-align">
+    <div className="container">
+      <div className="col-xs-1 col-md-3 col-lg"></div>
+      <div className="col-xs-10 col-md-6 col-lg center-align">
         <h2>Log In</h2>
         <form>
-          <div class="form-group">
+          <div className="form-group">
             <label>
               Email
               <input type="text" id="username" />
             </label>
           </div>
-          <div class="form-group">
+          <div className="form-group">
             <label>
               Password
               <input type="password" id="password" />
             </label>
           </div>
-          <div class="form-group"></div>
+          <div className="form-group"></div>
           <button type="submit">Log In</button>
-          <div class="toggle-button" type="signup" onClick={handleShowSignUp}>
+          <div
+            className="toggle-button"
+            type="signup"
+            onClick={handleShowSignUp}
+          >
             <u>Sign Up</u>
           </div>
         </form>

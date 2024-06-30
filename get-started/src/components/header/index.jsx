@@ -1,40 +1,42 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useAuth } from '../../contexts/authContext'
-import { doSignout } from '../../firebase/auth'
+import { AuthProvider, useAuth } from '../../contexts/authContext'
+import { doSignOut } from '../../firebase/auth'
 
 const handleLogout = () => {
-  doSignout().then(() => {
+  doSignOut().then(() => {
     navigate('/login')
   })
 }
 
-const Header = () => {
+export default function Header({ children }) {
   const navigate = useNavigate()
   const { userLoggedIn } = useAuth()
   return (
-    <nav className="flex flex-row gap-x-2 w-full z-20 fixed top-0 left h-12 border-b place-content-center items-center bg-gray-200">
-      {userLoggedIn ? (
-        <>
-          <button
-            onClick={handleLogout}
-            className="text-sm text-blue-600 underline"
-          >
-            Logout
-          </button>
-        </>
-      ) : (
-        <>
-          <Link to="/login" className="text-sm text-blue-600 underline">
-            Login
-          </Link>
-          <Link to="/signup" className="text-sm text-blue-600 underline">
-            Sign Up
-          </Link>
-        </>
-      )}
-    </nav>
+    <AuthProvider>
+      <div className="flex flex-col min-h-screen">
+        <nav className="flex flex-row gap-x-2 w-full z-20 fixed top-0 left-0 h-12 border-b place-content-center items-center bg-gray-200">
+          {userLoggedIn ? (
+            <>
+              <button
+                onClick={handleLogout}
+                className="text-sm text-blue-600 underline"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to={'/login'} className="text-sm text-blue-600 underline">
+                Login
+              </Link>
+              <Link to={'/signup'} className="text-sm text-blue-600 underline">
+                Sign Up
+              </Link>
+            </>
+          )}
+        </nav>
+      </div>
+    </AuthProvider>
   )
 }
-
-export default Header
