@@ -3,13 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { AuthProvider, useAuth } from '../../contexts/authContext'
 import { doSignOut } from '../../firebase/auth'
 
-const handleLogout = () => {
-  doSignOut().then(() => {
-    navigate('/login')
-  })
-}
-
-export default function Header({ children }) {
+export default function Header() {
   const navigate = useNavigate()
   const { userLoggedIn } = useAuth()
   return (
@@ -19,7 +13,11 @@ export default function Header({ children }) {
           {userLoggedIn ? (
             <>
               <button
-                onClick={handleLogout}
+                onClick={() => {
+                  doSignOut().then(() => {
+                    navigate('/login')
+                  })
+                }}
                 className="text-sm text-blue-600 underline"
               >
                 Logout

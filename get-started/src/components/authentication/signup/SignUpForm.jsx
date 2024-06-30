@@ -1,7 +1,7 @@
 import '../Form.css'
 import React, { useState } from 'react'
 // import { useAuth } from '../../../contexts/authContext'
-// import { Navigate, Link, useNavigate } from 'react-router-dom'
+import { Navigate, Link } from 'react-router-dom'
 import { doCreateUserWithEmailAndPassword } from '../../../firebase/auth'
 import {
   emptyFieldsErrorMessage,
@@ -10,9 +10,9 @@ import {
   emailUsedErrorMessage,
   passwordLengthErrorMessage,
 } from './SignUpErrorMessages'
+import { useAuth } from '../../../contexts/authContext'
 export default function SignUpForm() {
-  // const { userLoggedIn } = useAuth()
-  // const navigate = useNavigate()
+  const { userLoggedIn } = useAuth()
 
   // States for registration
   const [email, setEmail] = useState('')
@@ -95,12 +95,10 @@ export default function SignUpForm() {
     }
   }
 
-  const handleShowLogIn = () => {
-    console.log('Log in clicked')
-  }
-
   return (
     <div className="container">
+      {userLoggedIn && <Navigate to="/home" />}
+
       <div className="col-xs-1 col-md-3 col-lg"></div>
       <div className="col-xs-10 col-md-6 col-lg center-align">
         <h2>Sign Up</h2>
@@ -139,8 +137,8 @@ export default function SignUpForm() {
           {errorInvalidEmail && invalidEmailErrorMessage()}
           {errorPasswordsDoNotMatch && passwordsDoNotMatchErrorMessage()}
           {errorPasswordLength && passwordLengthErrorMessage()}
-          <div className="toggle-button" type="login" onClick={handleShowLogIn}>
-            <u>Log In</u>
+          <div className="toggle-button" type="login">
+            <Link to="/login">Log In</Link>
           </div>
         </form>
       </div>
