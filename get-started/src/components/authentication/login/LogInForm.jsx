@@ -36,12 +36,12 @@ export default function LogInForm() {
   }
 
   return (
-    <div className="container">
+    <div className="container flex justify-center px-6 mx-auto">
       {userLoggedIn && <Navigate to="/home" />}
 
       <div className="w-full h-screen flex self-center place-content-center place-items-center">
         <div className="w-96 text-gray-600 space-y-5 p-4 shadow-xl border rounded-xl">
-          <div className="text-center ">
+          <div className="text-center">
             <h2 className="text-gray-800 text-xl font-semibold sm:text-2x1">
               Log In
             </h2>
@@ -49,42 +49,41 @@ export default function LogInForm() {
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="form-group">
-              <label className="text-sm font-bold">
-                Email
-                <input
-                  type="text"
-                  id="username"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </label>
+              <label className="text-sm font-bold block">Email</label>
+              <input
+                className="border rounded-xl"
+                type="text"
+                id="username"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <div className="form-group">
-              <label className="text-sm font-bold">
-                Password
-                <input
-                  type="password"
-                  id="password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </label>
+              <label className="text-sm font-bold block">Password</label>
+              <input
+                className="border rounded-xl"
+                type="password"
+                id="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
-            <div className="form-group"></div>
             <div className="mt-16 flex flex-wrap justify-center gap-y-4 gap-x-6">
               <button
                 className="relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max"
                 type="submit"
                 disabled={isSigningIn}
               >
-                {isSigningIn ? 'Logging in...' : 'Log in'}
+                <span className="relative text-sm font-semibold text-white">
+                  {isSigningIn ? 'Logging in...' : 'Log in'}
+                </span>
               </button>
             </div>
             {errorMessage && <p>{errorMessage}</p>}
-            <div className="toggle-button" type="signup">
-              <Link to="/signup">Sign Up</Link>
+            <div className="toggle-button underline" type="signup">
+              <Link to="/signup">New to Hualex? Sign Up</Link>
             </div>
             <button
               disabled={isSigningIn}

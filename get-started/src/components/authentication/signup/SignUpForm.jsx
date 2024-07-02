@@ -96,51 +96,64 @@ export default function SignUpForm() {
   }
 
   return (
-    <div className="container">
+    <div className="container flex justify-center px-6 mx-auto">
       {userLoggedIn && <Navigate to="/home" />}
 
-      <div className="col-xs-1 col-md-3 col-lg"></div>
-      <div className="col-xs-10 col-md-6 col-lg center-align">
-        <h2>Sign Up</h2>
-        <form>
-          <div className="form-group">
-            <label>
-              Email
-              <input type="text" id="username" onChange={handleEmailChange} />
-            </label>
+      <div className="w-full h-screen flex self-center place-content-center place-items-center">
+        <div className="w-96 text-gray-600 space-y-5 p-4 shadow-xl border rounded-xl">
+          <div className="text-center">
+            <h2 className="text-gray-800 text-xl font-semibold sm:text-2x1">
+              Sign Up
+            </h2>
           </div>
-          <div className="form-group">
-            <label>
-              Password
-              <input
-                type="password"
-                id="password"
-                onChange={handlePasswordChange}
-              />
-            </label>
-          </div>
-          <div className="form-group">
-            <label>
-              Verify Password
-              <input
-                type="password"
-                id="passwordVerify"
-                onChange={handlePasswordVerifyChange}
-              />
-            </label>
-          </div>
-          <button type="submit" onClick={handleSubmit}>
-            Sign Up
-          </button>
-          {errorEmailUsed && emailUsedErrorMessage()}
-          {errorEmptyFields && emptyFieldsErrorMessage()}
-          {errorInvalidEmail && invalidEmailErrorMessage()}
-          {errorPasswordsDoNotMatch && passwordsDoNotMatchErrorMessage()}
-          {errorPasswordLength && passwordLengthErrorMessage()}
-          <div className="toggle-button" type="login">
-            <Link to="/login">Log In</Link>
-          </div>
-        </form>
+
+          <form>
+            <div className="form-group space-y-5">
+              <label className="text-sm font-bold">
+                Email
+                <input type="text" id="username" onChange={handleEmailChange} />
+              </label>
+            </div>
+            <div className="form-group">
+              <label className="text-sm font-bold">
+                Password
+                <input
+                  type="password"
+                  id="password"
+                  onChange={handlePasswordChange}
+                />
+              </label>
+            </div>
+            <div className="form-group">
+              <label className="text-sm font-bold">
+                Verify Password
+                <input
+                  type="password"
+                  id="passwordVerify"
+                  onChange={handlePasswordVerifyChange}
+                />
+              </label>
+            </div>
+            <div className="mt-4 flex flex-wrap justify-center gap-y-4 gap-x-6">
+              <button
+                className="relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max"
+                type="submit"
+                onClick={handleSubmit}
+              >
+                Sign Up
+              </button>
+            </div>
+
+            {errorEmailUsed && emailUsedErrorMessage()}
+            {errorEmptyFields && emptyFieldsErrorMessage()}
+            {errorInvalidEmail && invalidEmailErrorMessage()}
+            {errorPasswordsDoNotMatch && passwordsDoNotMatchErrorMessage()}
+            {errorPasswordLength && passwordLengthErrorMessage()}
+            <div className="toggle-button" type="login">
+              <Link to="/login">Log In</Link>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   )

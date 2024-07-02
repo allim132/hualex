@@ -8,19 +8,8 @@ import { BrowserRouter, Routes, Route, useRoutes } from 'react-router-dom'
 import { AuthProvider } from './contexts/authContext'
 
 import './App.css'
-import { useState } from 'react'
 
 function App() {
-  const [showLogInForm, setShowLogInForm] = useState(false)
-
-  const handleShowLogIn = () => {
-    setShowLogInForm(true)
-  }
-
-  const handleShowSignUp = () => {
-    setShowLogInForm(false)
-  }
-
   return (
     <AuthProvider>
       <BrowserRouter>

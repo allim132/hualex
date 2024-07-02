@@ -8,7 +8,7 @@ export default function Header() {
   const { userLoggedIn } = useAuth()
   return (
     <AuthProvider>
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col ">
         <nav className="flex flex-row gap-x-2 w-full z-20 fixed top-0 left-0 h-12 border-b place-content-center items-center bg-gray-200">
           {userLoggedIn ? (
             <>
