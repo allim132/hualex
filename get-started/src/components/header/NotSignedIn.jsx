@@ -7,14 +7,6 @@ export default function () {
         <ul className="tracking-wide font-medium lg:text-sm flex-col flex lg:flex-row gap-6 lg:gap-0">
           <li>
             <Link
-              to="/home"
-              className="block md:px-4 transition hover:text-primary"
-            >
-              <span>Home</span>
-            </Link>
-          </li>
-          <li>
-            <Link
               to="/login"
               className="block md:px-4 transition hover:text-primary"
             >
@@ -44,3 +36,7 @@ export default function () {
     </div>
   )
 }
+
+/*
+get-started/src/components/header/NotSignedIn.jsx
+*/
