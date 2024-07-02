@@ -40,9 +40,9 @@ export default function LogInForm() {
       {userLoggedIn && <Navigate to="/home" />}
 
       <div className="w-full h-screen flex self-center place-content-center place-items-center">
-        <div className="w-96 text-gray-600 space-y-5 p-4 shadow-xl border rounded-xl">
+        <div className="w-96 text-gray-600 space-y-5 p-4 shadow-xl border border-gray-100 text-gray-600 dark:border-gray-700 rounded-xl dark:bg-gray-800 dark:text-gray-100">
           <div className="text-center">
-            <h2 className="text-gray-800 text-xl font-semibold sm:text-2x1">
+            <h2 className="text-gray-100 text-xl font-semibold sm:text-2x1">
               Log In
             </h2>
           </div>
@@ -51,7 +51,7 @@ export default function LogInForm() {
             <div className="form-group">
               <label className="text-sm font-bold block">Email</label>
               <input
-                className="border rounded-xl"
+                className="border rounded-xl dark:bg-gray-700 dark:text-gray-100 text-center"
                 type="text"
                 id="username"
                 required
@@ -62,7 +62,7 @@ export default function LogInForm() {
             <div className="form-group">
               <label className="text-sm font-bold block">Password</label>
               <input
-                className="border rounded-xl"
+                className="border rounded-xl dark:bg-gray-700 dark:text-gray-100 text-center"
                 type="password"
                 id="password"
                 required
