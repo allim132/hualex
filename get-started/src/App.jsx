@@ -4,7 +4,7 @@ import SignUpForm from './components/authentication/signup/SignUpForm'
 import Header from './components/header'
 import Home from './components/home/index'
 
-import { BrowserRouter, Routes, Route, useRoutes } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './contexts/authContext'
 
 import './App.css'

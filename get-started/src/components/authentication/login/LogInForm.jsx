@@ -36,7 +36,7 @@ export default function LogInForm() {
   }
 
   return (
-    <div className="container flex justify-center px-6 mx-auto">
+    <div className="container flex justify-center max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
       {userLoggedIn && <Navigate to="/home" />}
 
       <div className="w-full h-screen flex self-center place-content-center place-items-center">
