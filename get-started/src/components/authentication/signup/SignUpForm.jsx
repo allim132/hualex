@@ -96,43 +96,44 @@ export default function SignUpForm() {
   }
 
   return (
-    <div className="container flex justify-center px-6 mx-auto">
+    <div className="container flex justify-center max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
       {userLoggedIn && <Navigate to="/home" />}
 
       <div className="w-full h-screen flex self-center place-content-center place-items-center">
-        <div className="w-96 text-gray-600 space-y-5 p-4 shadow-xl border rounded-xl">
+        <div className="w-96 space-y-5 p-4 shadow-xl border border-gray-100 text-gray-600 dark:border-gray-700 rounded-xl dark:bg-gray-800 dark:text-gray-100">
           <div className="text-center">
-            <h2 className="text-gray-800 text-xl font-semibold sm:text-2x1">
+            <h2 className="text-gray-100 text-xl font-semibold sm:text-2x1">
               Sign Up
             </h2>
           </div>
 
-          <form>
-            <div className="form-group space-y-5">
-              <label className="text-sm font-bold">
-                Email
-                <input type="text" id="username" onChange={handleEmailChange} />
-              </label>
+          <form className="space-y-5">
+            <div className="form-group">
+              <label className="text-sm font-bold block">Email</label>
+              <input
+                className="border rounded-xl dark:bg-gray-700 dark:text-gray-100 text-center"
+                type="text"
+                id="username"
+                onChange={handleEmailChange}
+              />
             </div>
             <div className="form-group">
-              <label className="text-sm font-bold">
-                Password
-                <input
-                  type="password"
-                  id="password"
-                  onChange={handlePasswordChange}
-                />
-              </label>
+              <label className="text-sm font-bold block">Password</label>
+              <input
+                className="border rounded-xl dark:bg-gray-700 dark:text-gray-100 text-center"
+                type="password"
+                id="password"
+                onChange={handlePasswordChange}
+              />
             </div>
             <div className="form-group">
-              <label className="text-sm font-bold">
-                Verify Password
-                <input
-                  type="password"
-                  id="passwordVerify"
-                  onChange={handlePasswordVerifyChange}
-                />
-              </label>
+              <label className="text-sm font-bold block">Verify Password</label>
+              <input
+                className="border rounded-xl dark:bg-gray-700 dark:text-gray-100 text-center"
+                type="password"
+                id="passwordVerify"
+                onChange={handlePasswordVerifyChange}
+              />
             </div>
             <div className="mt-4 flex flex-wrap justify-center gap-y-4 gap-x-6">
               <button
@@ -140,7 +141,9 @@ export default function SignUpForm() {
                 type="submit"
                 onClick={handleSubmit}
               >
-                Sign Up
+                <span className="relative text-base font-semibold text-white">
+                  Sign Up
+                </span>
               </button>
             </div>
 
@@ -149,8 +152,8 @@ export default function SignUpForm() {
             {errorInvalidEmail && invalidEmailErrorMessage()}
             {errorPasswordsDoNotMatch && passwordsDoNotMatchErrorMessage()}
             {errorPasswordLength && passwordLengthErrorMessage()}
-            <div className="toggle-button" type="login">
-              <Link to="/login">Log In</Link>
+            <div className="toggle-button underline" type="login">
+              <Link to="/login">Have an account? Log In</Link>
             </div>
           </form>
         </div>
