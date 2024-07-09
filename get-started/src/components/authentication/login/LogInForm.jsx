@@ -23,9 +23,8 @@ export default function LogInForm() {
       try {
         await doSignInWithEmailAndPassword(email, password)
       } catch (err) {
-        errorInvalidCredentials(true)
+        setErrorInvalidCredentials(true)
       } finally {
-        doSendEmailVerification()
         setIsSigningIn(false)
       }
     }

@@ -2,7 +2,10 @@ import '../Form.css'
 import React, { useState } from 'react'
 // import { useAuth } from '../../../contexts/authContext'
 import { Navigate, Link } from 'react-router-dom'
-import { doCreateUserWithEmailAndPassword } from '../../../firebase/auth'
+import {
+  doCreateUserWithEmailAndPassword,
+  doSendEmailVerification,
+} from '../../../firebase/auth'
 import {
   emptyFieldsErrorMessage,
   invalidEmailErrorMessage,
@@ -90,6 +93,7 @@ export default function SignUpForm() {
     try {
       console.log(`Creating user with email ${email} and password ${password}`)
       await doCreateUserWithEmailAndPassword(email, password)
+      doSendEmailVerification()
     } catch (error) {
       setErrorEmailUsed(true)
     }
