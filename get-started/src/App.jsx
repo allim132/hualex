@@ -1,5 +1,6 @@
 import LogInForm from './components/authentication/login/LogInForm'
 import SignUpForm from './components/authentication/signup/SignUpForm'
+import PasswordResetForm from './components/authentication/password-reset/PasswordResetForm'
 
 import Header from './components/header'
 import Home from './components/home/index'
@@ -19,6 +20,7 @@ function App() {
           <Route path="/login" element={<LogInForm />} />
           <Route path="/signup" element={<SignUpForm />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/reset" element={<PasswordResetForm />} />
           <Route path="*" element={<LogInForm />} />
         </Routes>
       </BrowserRouter>

@@ -23,14 +23,3 @@ export default function Header() {
     </AuthProvider>
   )
 }
-
-/*
-<li>
-            <Link
-              to="/home"
-              className="block md:px-4 transition hover:text-primary"
-            >
-              <span>Home</span>
-            </Link>
-          </li>
-*/

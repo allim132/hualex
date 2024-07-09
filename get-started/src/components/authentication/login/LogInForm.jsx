@@ -13,15 +13,21 @@ export default function LogInForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isSigningIn, setIsSigningIn] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
+  const [errorInvalidCredentials, setErrorInvalidCredentials] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
     if (!isSigningIn) {
       setIsSigningIn(true)
-      await doSignInWithEmailAndPassword(email, password)
-      // doSendEmailVerification()
-      // setIsSigningIn(false)
+      try {
+        await doSignInWithEmailAndPassword(email, password)
+      } catch (err) {
+        errorInvalidCredentials(true)
+      } finally {
+        doSendEmailVerification()
+        setIsSigningIn(false)
+      }
     }
   }
 
@@ -81,7 +87,15 @@ export default function LogInForm() {
                 </span>
               </button>
             </div>
-            {errorMessage && <p>{errorMessage}</p>}
+            {errorInvalidCredentials && (
+              <p>
+                Error: Invalid user credentails. Please check your email and
+                password.
+              </p>
+            )}
+            <div className="toggle-button underline" type="password-reset">
+              <Link to="/reset">Forgot your password?</Link>
+            </div>
             <div className="toggle-button underline" type="signup">
               <Link to="/signup">New to Hualex? Sign Up</Link>
             </div>
